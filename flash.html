@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laced Golf Sensor Firmware Update</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        
+        h1 { 
+            color: #333;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 28px;
+        }
+        
+        .version {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .instructions h3 {
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .step { 
+            margin: 25px 0;
+            padding: 18px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3a6a33;
+        }
+        
+        .step strong {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .step-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+            margin-top: 8px;
+        }
+        
+        .highlight {
+            background: #fffbcc;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        esp-web-install-button {
+            margin: 35px 0;
+            display: block;
+        }
+        
+        button {
+            background: #3a6a33;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        button:hover {
+            background: #2d5328;
+        }
+        
+        .browser-note {
+            color: #666;
+            font-size: 14px;
+            margin-top: 25px;
+            padding: 18px;
+            background: #fff3cd;
+            border-radius: 8px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+        
+        .troubleshooting {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 25px;
+            text-align: left;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .troubleshooting h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #856404;
+        }
+        
+        .troubleshooting-item {
+            margin: 12px 0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            color: #856404;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 13px;
+            border-left: 3px solid #ffc107;
+            font-weight: 500;
+        }
+        
+        small {
+            font-weight: 400;
+            font-size: 13px;
+            color: #666;
+            display: block;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Laced Golf Sensor Update</h1>
+    <div class="version">Firmware v2.0 - LED & Haptic Enabled</div>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        
+        <div class="step">
+            <strong>1. Plug in one sensor via USB</strong>
+            <div class="step-content">
+                Turn off all other sensors. Only connect one sensor at a time.
+            </div>
+        </div>
+        
+        <div class="step">
+            <strong>2. Click "Connect & Flash Sensor" below</strong>
+            <div class="step-content">
+                Select the device with <span class="highlight">"USB JTAG"</span> or <span class="highlight">"usbmodem"</span> in the name
+                <small>(Ignore Bluetooth devices)</small>
+            </div>
+        </div>
+        
+        <div class="step">
+            <strong>3. Click "Connect" then "Install"</strong>
+            <div class="step-content">
+                Wait 2-3 minutes for the update to complete
+                <div class="warning">Don't unplug during the update!</div>
+            </div>
+        </div>
+        
+        <div class="step">
+            <strong>4. After each sensor, refresh this page</strong>
+            <div class="step-content">
+                Turn off the sensor, unplug it, then press <span class="highlight">Command+R</span> (Mac) or <span class="highlight">F5</span> (PC) to refresh the page before updating the next sensor
+            </div>
+        </div>
+    </div>
+
+    <esp-web-install-button manifest="manifest.json">
+        <button slot="activate">Connect & Flash Sensor</button>
+    </esp-web-install-button>
+
+    <div class="troubleshooting">
+        <h4>If you get an error:</h4>
+        <div class="troubleshooting-item">Refresh the page (Command+R or F5) and try again</div>
+    </div>
+
+    <div class="browser-note">
+        <strong>Important:</strong> Use Chrome, Edge, or Opera browser.<br>
+        Safari and Firefox are not supported.
+    </div>
+    
+    <script>
+        document.querySelector('esp-web-install-button').addEventListener('state-changed', (ev) => {
+            if (ev.detail.state === 'INSTALLED') {
+                setTimeout(() => {
+                    console.log('Installation completed successfully');
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
